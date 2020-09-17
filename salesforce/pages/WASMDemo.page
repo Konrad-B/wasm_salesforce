@@ -1,0 +1,24 @@
+<apex:page controller="WASMController">
+    <apex:includeScript value="{! $Resource.wasm_demo_glue }"/>
+    <!-- A short bit of jQuery to test it's there -->
+    <script type="text/javascript">
+    const { greet } = wasm_bindgen;
+
+      async function run() {
+          let base64String = '{!base64}';
+          let binaryString = window.atob(base64String);
+          let lengthOfString = binaryString.length;
+          let bytes = new Uint8Array(lengthOfString);
+          for(let i = 0; i < lengthOfString; i++){
+              bytes[i] = binaryString.charCodeAt(i);
+          }
+          let buffer = bytes.buffer;
+        await wasm_bindgen(buffer);
+
+        greet();
+      }
+
+      run();
+    </script>
+    
+</apex:page>

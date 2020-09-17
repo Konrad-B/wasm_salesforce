@@ -1,0 +1,7 @@
+<aura:component description="WASMComponentDemo" controller="WASMComponentController" implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="wasmObject" type="Object"/>
+
+    <ltng:require scripts="{! $Resource.wasm_demo_glue }"
+                  afterScriptsLoaded="{!c.afterScriptLoaded}" />
+
+</aura:component>
